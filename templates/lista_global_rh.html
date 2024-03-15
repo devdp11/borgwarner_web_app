@@ -1,0 +1,315 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<head>
+    <link href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.table2excel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <style type="text/css">
+    #caixa {
+        margin: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container.fluid" id="caixa">
+        <h3>Lista Global - TeamLeaders/Técnicos</h3>
+
+        <br>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        
+        <div class="row">
+            <div class="column">
+                <div id="toolbar" class="select">
+                    <select class="form-control">
+                        <option value="">Export Basic</option>
+                        <option value="all">Export All</option>
+                        <option value="selected">Export Selected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table id="table" data-search="true" data-toggle="table" data-show-export="true" data-show-columns="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "1","sortOrder":"desc"},{"sortName":"0","sortOrder":"desc"}]' data-pagination="true" data-page-list="[10,20,30,50,All]" data-toolbar="#toolbar" data-show-toggle="true" data-resizable="true">
+            <thead id="box">
+                <tr>
+                    
+                    <th data-field="1" data-filter-control="input" data-sortable="true">Número</th>
+                    <th data-field="2" data-filter-control="input" data-sortable="true">Nome</th>
+                    <th data-field="3" data-filter-control="input" data-sortable="true">Data de Submissão</th>
+                    <th data-field="4" data-filter-control="input" data-sortable="true">Comentário do Superior Hierárquico</th>
+                    <th data-field="5" data-filter-control="input" data-sortable="true">Auto Avaliação</th>
+                    <th data-field="6" data-filter-control="input" data-sortable="true">Avaliação</th>
+                    <th data-field="7" data-filter-control="input" data-sortable="true">Comentário RH</th>
+                    <th data-field="8" data-filter-control="input" data-sortable="true">Opções</th>
+                    <th data-field="9" data-filter-control="input" data-sortable="true">Comentários</th>
+                    <th data-field="10" data-filter-control="input" data-sortable="true">Avaliação</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in tabela %}
+                <tr>
+                    <!--special characters and spaces not allowed in data-field name-->
+                    
+                    
+                    <td>{{row.5}}</td>
+                    <td>{{row.4}}</td>
+                    <td>{{row.3}}</td>
+                    <td>{{row.36}}</td>
+                    <td>{{row.38}}</td>
+                    <td>{{row.37}}</td>
+                    {% if row.41 == None  %}
+                    <td></td>
+                    {% else %}
+                    <td>{{row.41}}</td>
+                    {% endif %}
+                    <td width="300"><button class="btn btn-primary" href="/editar_opquest{{row.0}}" style="background-color: #f8971d;border-color:#f8971d;" data-toggle="modal" data-target="#editar_opquest{{row.0}}">Editar</button> </td>
+                    <td width="300"><button class="btn btn-primary" href="/adicionar_comentario_tlquest{{row.0}}" style="background-color: #002369;border-color:#002369;" data-toggle="modal" data-target="#adicionar_comentario_tlquest{{row.0}}">RH</button> </td>
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador{{row.0}}">Avaliação</a></td>
+                    
+                </tr>
+                    <div class="modal fade" id="editar_opquest{{row.0}}" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Atualizar</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/alterar_superior_tlquest/{{row.0}}" method="POST">
+                                        <div class="form-group">
+                                            <label class="control-label">Colaborador/a</label>
+                                            <div>
+                                                <input type="text" class="form-control" id="nome" name="nome" value="{{row.4}}"  disabled />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Superior Selecionado</label>
+                                            <div>
+                                                <input type="text" class="form-control" id="nome_sup" name="nome_sup" value="{{row.1}}" placeholder="centro" disabled />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Novo Superior</label>
+                                            <div class="col">
+                                                <select class="form-control" type="text" name="novo_nome_sup" id="novo_nome_sup" required>
+                                                    <option value="" selected>Leader</option>
+                                                    {% for row in teamleaders%}
+                                                    <option value="{{ row.1 }}">{{ row.1 }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <!--input type="text" class="form-control" name="teamleader" placeholder="Team Leader" aria-label="Team Leader" required-->
+                                            </div>
+                                            <!--div>
+                                                <input type="text" class="form-control" id="noov_nome_sup" name="novo_nome_sup"  placeholder="Nome Superior"  />
+                                            </div-->
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary ">Atualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="adicionar_comentario_tlquest{{row.0}}" role="dialog">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Adicionar Comentário</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/adicionar_comentario_tlquest/{{row.0}}" method="POST">
+                                        <div class="form-group">
+                                            <label class="control-label">Colaborador/a</label>
+                                            <div>
+                                                <input type="text" class="form-control" id="nome" name="nome" value="{{row.4}}"  disabled />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Comentário RH</label>
+                                            <div>
+                                                <input type="text" class="form-control" id="comentario" name="comentario" Placeholder="Adicione comentário" maxlength="249" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary ">Atualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </tbody>
+        </table>
+
+            {% for row in tabela %}
+        <div id="avaliacao_colaborador{{row.0}}" class="modal lg fade" >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Avaliar Colaborador/a</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align: center;">Questionário | Data: {{today}}</h3>
+                        <form action="" method="POST" class="was-validated">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome" aria-label="Nome" value="{{row.35}}" disabled>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nrcol" placeholder="Número Colaborador" value="{{row.36}}" aria-label="Número Colaborador" disabled>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="teamleader" placeholder="Número Colaborador" value="{{row.1}}" aria-label="Número Colaborador" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    
+                                </div>
+                            </div>
+                    </div>
+                    <br>
+                    </form>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>Download PDF</strong>
+                                        {% if row.2 == 'Team Leader'  %}
+                                        <a class="btn btn-primary btn-lg" href="/table_team_leader_pl/{{row.0}}" role="button" style="background-color:#ff0000; border-color: white; color: white;"><i class="bi bi-file-earmark-pdf"></i></a></th>
+                                        {% elif row.2 == 'Técnico Manutenção' %}
+                                        <a class="btn btn-primary btn-lg" href="/table_tecnico_pl/{{row.0}}" role="button" style="background-color:#ff0000; border-color: white; color: white;"><i class="bi bi-file-earmark-pdf"></i></a></th>
+                                        {% else %}
+                                        <h4> teste</h4>
+                                        
+                                        {% endif %}
+                                        <th scope="col">Comentário</th>
+                                    <th scope="col">Auto Avaliação</th>
+                                    <th scope="col">Avaliação </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Cultura e Segurança</th>
+                                    <td>{{row.26}}</td>
+                                    <td>{{row.6}}</td>
+                                    <td>{{row.7}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para a Qualidade</th>
+                                    <td>{{row.27}}</td>
+                                    <td>{{row.8}}</td>
+                                    <td>{{row.9}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para os Resultados</th>
+                                    <td>{{row.28}}</td>
+                                    <td>{{row.10}}</td>
+                                    <td>{{row.11}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Relacionamento Interpessoal</th>
+                                    <td>{{row.29}}</td>
+                                    <td>{{row.12}}</td>
+                                    <td>{{row.13}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Trabalho em Equipa</th>
+                                    <td>{{row.30}}</td>
+                                    <td>{{row.14}}</td>
+                                    <td>{{row.15}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Competencias Técnicas</th>
+                                    <td>{{row.31}}</td>
+                                    <td>{{row.16}}</td>
+                                    <td>{{row.17}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Pontualidade</th>
+                                    <td>{{row.33}}</td>
+                                    <td>{{row.20}}</td>
+                                    <td>{{row.21}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Assiduidade</th>
+                                    <td>{{row.34}}</td>
+                                    <td>{{row.22}}</td>
+                                    <td>{{row.23}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Apreciação Global</th>
+                                    <td>{{row.35}}</td>
+                                    <td>{{row.24}}</td>
+                                    <td>{{row.25}}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <th scope="row">Final</th>
+                                    <td></td>
+                                    <td>{{row.38}}</td>
+                                    <td>{{row.37}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Notas</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{row.36}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        </div>
+        {% endfor %}
+
+        </div>
+    
+    </div>
+</body>
+{% endblock %}

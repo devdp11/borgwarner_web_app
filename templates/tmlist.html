@@ -1,0 +1,138 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<head>
+
+
+    <script type="text/javascript">
+    $(function() {
+    $("#exporttable2").click(function(e){
+    var table = $("#table");
+    if(table && table.length){
+    $(table).table2excel({
+    exclude: ".noExl",
+    name: "Excel Document Name",
+    filename: "Report" + new Date().toISOString().replace(/[\-\:\.]/g, "") ,
+    fileext: ".xls",
+    exclude_img: true,
+    exclude_links: true,
+    exclude_inputs: true,
+    preserveColors: false
+    });
+    }
+    });
+
+    });
+    </script>
+</head>
+<body>
+    <div class="container.fluid" align="right">
+        <button id="exporttable2" class="btn btn-success"style="background-color: #90b114;border-color:#90b114;">Export Table Excel</button>
+    </div>
+    <div class="containe.fluid">
+        <table id="table" data-toggle="table" data-show-columns-toggle-all="true"
+                data-pagination="true"
+                data-filter-control="true"                    
+                data-show-pagination-switch="true"
+                data-show-columns="true"
+                data-show-columns-toggle-all="true"
+                data-show-search-clear-button="true"
+                data-sortable="true"
+                data-buttons="buttons"
+                classes="table-sm"
+                data-pagination="true"
+                data-pagination-pre-text="Previous"
+                data-pagination-next-text="Next"
+                data-pagination-h-aligh="left"
+                data-pagination-detail-h-align="right"
+                data-page-list="[10,20,30,50,All]"
+                class="table-responsive table-striped"
+                data-show-export="true"
+                data-click-to-select="true">
+
+                    <thead id="box">
+                        <tr>
+                            <th data-field="0" data-filter-control="input" data-sortable="true">Número</th>
+                            <th data-field="1" data-filter-control="input" data-sortable="true">Nome</th>
+                            <th data-field="35" data-filter-control="input" data-sortable="true">Data de Submissão</th>
+                            <th data-field="2" data-filter-control="input" data-sortable="true">Cultura Segurança <br>(Auto-Avaliação)</th>
+                            <th data-field="3" data-filter-control="input" data-sortable="true">Cultura Segurança <br>(Avaliação)</th>
+                            <th data-field="4" data-filter-control="input" data-sortable="true">Cultura Segurança <br>(Comentário)</th>
+                            <th data-field="5" data-filter-control="input" data-sortable="true">Orientação Para a Qualidade <br>(Auto-Avaliação)</th>
+                            <th data-field="6" data-filter-control="input" data-sortable="true">Orientação Para a Qualidade <br>(Avaliação)</th>
+                            <th data-field="7" data-filter-control="input" data-sortable="true">Orientação Para a Qualidade <br>(Comentário)</th>
+                            <th data-field="8" data-filter-control="input" data-sortable="true">Orientação Para os Resultados <br>(Auto-Avaliação)</th>
+                            <th data-field="9" data-filter-control="input" data-sortable="true">Orientação Para os Resultados <br>(Avaliação)</th>
+                            <th data-field="10" data-filter-control="input" data-sortable="true">Orientação Para os Resultados <br>(Comentário)</th>
+                            <th data-field="11" data-filter-control="input" data-sortable="true">Relacionamento Interpessoal <br>(Auto-Avaliação)</th>
+                            <th data-field="12" data-filter-control="input" data-sortable="true">Relacionamento Interpessoal <br>(Avaliação)</th>
+                            <th data-field="13" data-filter-control="input" data-sortable="true">Relacionamento Interpessoal <br>(Comentário)</th>
+                            <th data-field="14" data-filter-control="input" data-sortable="true">Trabalho em Equipa <br>(Auto-Avaliação)</th>
+                            <th data-field="15" data-filter-control="input" data-sortable="true">Trabalho em Equipa <br>(Avaliação)</th>
+                            <th data-field="16" data-filter-control="input" data-sortable="true">Trabalho em Equipa <br>(Comentário)</th>
+                            <th data-field="17" data-filter-control="input" data-sortable="true">Competências Técnicas/Funcionais <br>(Auto-Avaliação)</th>
+                            <th data-field="18" data-filter-control="input" data-sortable="true">Competências Técnicas/Funcionais <br>(Avaliação)</th>
+                            <th data-field="19" data-filter-control="input" data-sortable="true">Competências Técnicas/Funcionais <br>(Comentário)</th>
+                            <th data-field="20" data-filter-control="input" data-sortable="true">Assiduidade <br>(Auto-Avaliação)</th>
+                            <th data-field="21" data-filter-control="input" data-sortable="true">Assiduidade <br>(Avaliação)</th>
+                            <th data-field="22" data-filter-control="input" data-sortable="true">Assiduidade <br>(Comentário)</th>
+                            <th data-field="23" data-filter-control="input" data-sortable="true">Pontualidade <br>(Auto-Avaliação)</th>
+                            <th data-field="24" data-filter-control="input" data-sortable="true">Pontualidade <br>(Avaliação)</th>
+                            <th data-field="25" data-filter-control="input" data-sortable="true">Pontualidade <br>(Comentário)</th>
+                            <th data-field="26" data-filter-control="input" data-sortable="true">Apreciação Global <br>(Auto-Avaliação)</th>
+                            <th data-field="27" data-filter-control="input" data-sortable="true">Apreciação Global <br>(Avaliação)</th>
+                            <th data-field="28" data-filter-control="input" data-sortable="true">Apreciação Global <br>(Comentário)</th>
+                            <th data-field="29" data-filter-control="input" data-sortable="true">Comentário do Superior Hierarquico</th>
+                            <th data-field="30" data-filter-control="input" data-sortable="true">Auto Avaliação</th>
+                            <th data-field="31" data-filter-control="input" data-sortable="true">Avaliação</th>
+
+                        </tr>
+                    </thead>
+            <!-- https://getbootstrap.com/docs/4.0/content/tables/ link para alterar cores das tabelas -->
+                    <tbody>
+                        {% for row in ole %}
+                        <tr>
+                            
+                                <!--special characters and spaces not allowed in data-field name-->
+                                <td>{{row.5}}</td>
+                                <td>{{row.4}}</td>
+                                <td>{{row.3}}</td>
+                                <td>{{row.6}}</td>
+                                <td>{{row.7}}</td>
+                                <td>{{row.26}}</td>
+                                <td>{{row.8}}</td>
+                                <td>{{row.9}}</td>
+                                <td>{{row.27}}</td>
+                                <td>{{row.10}}</td>
+                                <td>{{row.11}}</td>
+                                <td>{{row.28}}</td>
+                                <td>{{row.12}}</td>
+                                <td>{{row.13}}</td>
+                                <td>{{row.29}}</td>
+                                <td>{{row.14}}</td>
+                                <td>{{row.15}}</td>
+                                <td>{{row.30}}</td>
+                                <td>{{row.16}}</td>
+                                <td>{{row.17}}</td>
+                                <td>{{row.31}}</td>
+                                <td>{{row.20}}</td>
+                                <td>{{row.21}}</td>
+                                <td>{{row.33}}</td>
+                                <td>{{row.22}}</td>
+                                <td>{{row.23}}</td>
+                                <td>{{row.34}}</td>
+                                <td>{{row.24}}</td>
+                                <td>{{row.25}}</td>
+                                <td>{{row.35}}</td>
+                                <td>{{row.36}}</td>
+                                <td>{{row.38}}</td>
+                                <td>{{row.37}}</td>
+
+                            
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+        </table>
+    </div>
+</body>
+{% endblock %}

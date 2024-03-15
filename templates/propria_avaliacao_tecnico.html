@@ -1,0 +1,417 @@
+{% extends 'home.html' %}
+{% block content %}
+<head>
+	<link href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.table2excel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <style type="text/css">
+    #caixa {
+        margin: 10px;
+    }
+    </style>
+	
+</head>
+<body>
+<div class="container.fluid" id="caixa">
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <h3>Avaliação Pessoal</h3>
+        <div class="row">
+            <div class="column">
+                <div id="toolbar" class="select">
+                    <select class="form-control">
+                        <option value="">Export Basic</option>
+                        <option value="all">Export All</option>
+                        <option value="selected">Export Selected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table id="table" data-search="true" data-toggle="table" data-show-export="true" data-show-columns="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "1","sortOrder":"desc"},{"sortName":"0","sortOrder":"desc"}]' data-pagination="true" data-page-list="[10,20,30,50,All]" data-toolbar="#toolbar" data-show-toggle="true" data-resizable="true">
+            <thead id="box">
+                <tr>
+                    <th data-field="1" data-filter-control="select" data-sortable="true">Data Autoavaliação</th>
+                    <th data-field="2" data-filter-control="select" data-sortable="true">Autoavaliação</th>
+                    <th data-field="3" data-filter-control="select" data-sortable="true">Avaliação</th>
+                    <th data-field="4" data-filter-control="select" data-sortable="true">Notas Finais</th>
+                    <th data-field="5" data-filter-control="select" data-sortable="true">Comentários</th>
+                    <th data-field="6" data-filter-control="select" data-sortable="true">Ver Avaliação</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in minha_avaliacao %}
+                <tr>
+                    <!--special characters and spaces not allowed in data-field name-->
+                    <td>{{row.3}}</td>
+                    <td>{{row.38}}</td>
+                    <td>{{row.37}}</td>
+                    <td>{{row.36}}</td>
+                    <!--td><a class="btn btn-danger" href="avaliacao_operador/{{row.0}}" type="button" style="background-color:#90b114;border-color:#90b114;color:white">Avaliar </a></td-->
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador_comentario{{row.0}}">Comentários</a></td>
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador{{row.0}}">Avaliação</a></td>
+                    
+                </tr>
+                {% endfor %}
+                <tr>
+                    <!--special characters and spaces not allowed in data-field name-->
+                    <td>Data</td>
+                    <td>Auto Avaliação</td>
+                    <td>Avaliação</td>
+                    <td>Notas Finais</td>
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador_comentario">modal Comentários</a></td>
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador"> modalAvaliação</a></td>
+                    
+                </tr>
+            </tbody>
+            </table>
+    </div>
+        <div id="avaliacao_colaborador" class="modal lg fade">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Avaliação Técnico</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align: center;">Questionário | Data: </h3>
+                        <form action="" method="POST" class="was-validated">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome" aria-label="Nome" value="">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nrcol" placeholder="Número Colaborador" value="" aria-label="Número Colaborador">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="teamleader"  value="" aria-label="Número Colaborador">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label></label>
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+                    <br>
+                    
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Auto Avaliação</th>
+                                    <th scope="col">Avaliação </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Cultura e Segurança</th>
+                                    <td>row.6</td>
+                                    <td>row.7</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para a Qualidade</th>
+                                    <td>row.8</td>
+                                    <td>row.9</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para os Resultados</th>
+                                    <td>row.10</td>
+                                    <td>row.11</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Relacionamento Interpessoal</th>
+                                    <td>row.12</td>
+                                    <td>row.13</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Trabalho em Equipa</th>
+                                    <td>row.14</td>
+                                    <td>row.15</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Competencias Técnicas</th>
+                                    <td>row.16</td>
+                                    <td>row.17</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Pontualidade</th>
+                                    <td>row.20</td>
+                                    <td>row.21</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Assiduidade</th>
+                                    <td>row.22</td>
+                                    <td>row.23</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Apreciação Global</th>
+                                    <td>row.24</td>
+                                    <td>row.25</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final</th>
+                                    <td>row.38</td>
+                                    <td>row.37</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Notas</th>
+                                    <td></td>
+                                    <td>row.36</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <hr>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% for row in minha_avaliacao %}
+        <div id="avaliacao_colaborador" class="modal lg fade">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Avaliação Técnico</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align: center;">Questionário | Data: </h3>
+                        <form action="" method="POST" class="was-validated">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome" aria-label="Nome" value="">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nrcol" placeholder="Número Colaborador" value="" aria-label="Número Colaborador">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="teamleader"  value="" aria-label="Número Colaborador">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label></label>
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+                    <br>
+                    
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Auto Avaliação</th>
+                                    <th scope="col">Avaliação </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Cultura e Segurança</th>
+                                    <td>{{row.6}}</td>
+                                    <td>{{row.7}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para a Qualidade</th>
+                                    <td>{{row.8}}</td>
+                                    <td>{{row.9}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para os Resultados</th>
+                                    <td>{{row.10}}</td>
+                                    <td>{{row.11}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Relacionamento Interpessoal</th>
+                                    <td>{{row.12}}</td>
+                                    <td>{{row.13}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Trabalho em Equipa</th>
+                                    <td>{{row.14}}</td>
+                                    <td>{{row.15}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Competencias Técnicas</th>
+                                    <td>{{row.16}}</td>
+                                    <td>{{row.17}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Pontualidade</th>
+                                    <td>{{row.20}}</td>
+                                    <td>{{row.21}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Assiduidade</th>
+                                    <td>{{row.22}}</td>
+                                    <td>{{row.23}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Apreciação Global</th>
+                                    <td>{{row.24}}</td>
+                                    <td>{{row.25}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final</th>
+                                    <td>{{row.38}}</td>
+                                    <td>{{row.37}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Notas</th>
+                                    <td></td>
+                                    <td>{{row.36}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <hr>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <div id="avaliacao_colaborador_comentario{{row.0}}" class="modal lg fade">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Avaliação Técnico</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align: center;">Questionário | Data: {{today}}</h3>
+                        <form action="" method="POST" class="was-validated">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome" aria-label="Nome" value="{{row.4}}">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nrcol" placeholder="Número Colaborador" value="{{row.5}}" aria-label="Número Colaborador">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="teamleader"  value="{{row.1}}" aria-label="Número Colaborador">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label></label>
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+                    <br>
+                    
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Auto Avaliação</th>
+                                    <th scope="col">Comentário</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Cultura e Segurança</th>
+                                    <td>{{row.6}}</td>
+                                    <td>{{row.26}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para a Qualidade</th>
+                                    <td>{{row.8}}</td>
+                                    <td>{{row.27}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para os Resultados</th>
+                                    <td>{{row.10}}</td>
+                                    <td>{{row.28}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Relacionamento Interpessoal</th>
+                                    <td>{{row.12}}</td>
+                                    <td>{{row.29}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Trabalho em Equipa</th>
+                                    <td>{{row.14}}</td>
+                                    <td>{{row.30}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Competencias Técnicas</th>
+                                    <td>{{row.16}}</td>
+                                    <td>{{row.31}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Pontualidade</th>
+                                    <td>{{row.20}}</td>
+                                    <td>{{row.33}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Assiduidade</th>
+                                    <td>{{row.22}}</td>
+                                    <td>{{row.34}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Apreciação Global</th>
+                                    <td>{{row.24}}</td>
+                                    <td>{{row.35}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final</th>
+                                    <td>{{row.38}}</td>
+                                    <td>{{row.37}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Notas</th>
+                                    <td></td>
+                                    <td>{{row.36}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <hr>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    </div>
+    {% endfor %}
+        
+
+</body>
+{% endblock %}

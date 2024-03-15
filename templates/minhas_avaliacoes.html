@@ -1,0 +1,1184 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<head>
+    <style type="text/css">
+        #modal_1 { overflow-y:scroll }
+
+    </style>
+    <script type="text/javascript">
+    function onlyOne(checkbox) {
+        var checkboxes = document.getElementsByName('check[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne1(checkbox) {
+        var checkboxes = document.getElementsByName('check1[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne2(checkbox) {
+        var checkboxes = document.getElementsByName('check2[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne3(checkbox) {
+        var checkboxes = document.getElementsByName('check3[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne4(checkbox) {
+        var checkboxes = document.getElementsByName('check4[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne5(checkbox) {
+        var checkboxes = document.getElementsByName('check5[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne6(checkbox) {
+        var checkboxes = document.getElementsByName('check6[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne7(checkbox) {
+        var checkboxes = document.getElementsByName('check7[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne8(checkbox) {
+        var checkboxes = document.getElementsByName('check8[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne9(checkbox) {
+        var checkboxes = document.getElementsByName('check9[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne10(checkbox) {
+        var checkboxes = document.getElementsByName('check10[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne11(checkbox) {
+        var checkboxes = document.getElementsByName('check11[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne12(checkbox) {
+        var checkboxes = document.getElementsByName('check12[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne13(checkbox) {
+        var checkboxes = document.getElementsByName('check13[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne14(checkbox) {
+        var checkboxes = document.getElementsByName('check14[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne15(checkbox) {
+        var checkboxes = document.getElementsByName('check15[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne16(checkbox) {
+        var checkboxes = document.getElementsByName('check16[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne17(checkbox) {
+        var checkboxes = document.getElementsByName('check17[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne18(checkbox) {
+        var checkboxes = document.getElementsByName('check18[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne19(checkbox) {
+        var checkboxes = document.getElementsByName('check19[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    function onlyOne20(checkbox) {
+        var checkboxes = document.getElementsByName('check20[]')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+    <script type="text/javascript">
+    jQuery(function($) {
+        var requiredCheckboxes = $(':checkbox[required]');
+        requiredCheckboxes.on('change', function(e) {
+            var checkboxGroup = requiredCheckboxes.filter('[name="' + $(this).attr('name') + '"]');
+            var isChecked = checkboxGroup.is(':checked');
+            checkboxGroup.prop('required', !isChecked);
+        });
+        requiredCheckboxes.trigger('change');
+    });
+    </script>
+    <link href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.table2excel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <style type="text/css">
+    #caixa {
+        margin: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container.fluid" id="caixa">
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <h3>Avaliações Equipa</h3>
+        <div class="row">
+            <div class="column">
+                <div id="toolbar" class="select">
+                    <select class="form-control">
+                        <option value="">Export Basic</option>
+                        <option value="all">Export All</option>
+                        <option value="selected">Export Selected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table id="table" data-search="true" data-toggle="table" data-show-export="true" data-show-columns="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "1","sortOrder":"desc"},{"sortName":"0","sortOrder":"desc"}]' data-pagination="true" data-page-list="[10,20,30,50,All]" data-toolbar="#toolbar" data-show-toggle="true" data-resizable="true">
+            <thead id="box">
+                <tr>
+                    <th data-field="0" data-filter-control="input" data-sortable="true">0</th>
+                    <th data-field="1" data-filter-control="select" data-sortable="true">Colaborador</th>
+                    <th data-field="2" data-filter-control="select" data-sortable="true">Numero</th>
+                    <th data-field="3" data-filter-control="select" data-sortable="true">Data Autoavaliação</th>
+                    <th data-field="4" data-filter-control="select" data-sortable="true">Autoavaliação</th>
+                    <th data-field="5" data-filter-control="select" data-sortable="true">Avaliação</th>
+                    <th data-field="6" data-filter-control="select" data-sortable="true">Notas Finais</th>
+                    <th data-field="7" data-filter-control="select" data-sortable="true">Estado Avaliação </th>
+                    <th data-field="8" data-filter-control="select" data-sortable="true">Ver Avaliação</th>
+                    <th data-field="9" data-filter-control="select" data-sortable="true">Avaliar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in minha_avaliacao %}
+                <tr>
+                    <!--special characters and spaces not allowed in data-field name-->
+                    <td>{{row.0}}</td>
+                    <td>{{row.35}}</td>
+                    <td>{{row.36}}</td>
+                    <td>{{row.2}}</td>
+                    <td>{{row.37}}</td>
+                    <td>{{row.24}}</td>
+                    <td>{{row.34}}</td>
+                    {% if row[41] == '1' %}
+                    <td><i class="fa fa-2x fa-check" style="color: green; text-shadow: 1px 1px 1px #000;"></i> Done</td>
+                    {% else %}
+                    <td><i class="fa fa-2x fa-ban" style="color: red; text-shadow: 1px 1px 1px #000;"></i> Not Done</td>
+                    {% endif %}
+                    <!--td><a class="btn btn-danger" href="avaliacao_operador/{{row.0}}" type="button" style="background-color:#90b114;border-color:#90b114;color:white">Avaliar </a></td-->
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador{{row.0}}">Avaliação</a></td>
+                    <td><a class="btn btn-success" href="" style="background-color:#007dc3;border-color:#007dc3;color:white" data-toggle="modal" data-target="#avaliacao_pelo_teamleader{{row.0}}">Avaliar</a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>row.0</td>
+                    <td>row.35</td>
+                    <td>row.36</td>
+                    <td>row.2</td>
+                    <td>row.37</td>
+                    <td>row.24</td>
+                    <td>row.34</td>
+                    <td><i class="fa fa-2x fa-ban" style="color: red; text-shadow: 1px 1px 1px #000;"></i> Not Done</td>
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador">Avaliação</a></td>
+                    <td><a class="btn btn-success" href="" style="background-color:#007dc3;border-color:#007dc3;color:white" data-toggle="modal" data-target="#avaliacao_pelo_teamleader">Avaliar</a></td>
+                </tr>
+                <tr>
+                    <td>row.0</td>
+                    <td>row.35</td>
+                    <td>row.36</td>
+                    <td>row.2</td>
+                    <td>row.37</td>
+                    <td>row.24</td>
+                    <td>row.34</td>
+                    <td><i class="fa fa-2x fa-check" style="color: green; text-shadow: 1px 1px 1px #000;"></i> Done</td>
+                    <td><a class="btn btn-primary" href="" style="background-color:#002369;border-color:#002369;color:white" data-toggle="modal" data-target="#avaliacao_colaborador">Avaliação</a></td>
+                    <td><a class="btn btn-success" href="" style="background-color:#007dc3;border-color:#007dc3;color:white" data-toggle="modal" data-target="#avaliacao_pelo_teamleader">Avaliar</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Modal  -->
+        {% for row in minha_avaliacao %}
+        <div id="avaliacao_colaborador{{row.0}}" class="modal lg fade" >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Avaliar Colaborador/a</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align: center;">Questionário | Data: {{today}}</h3>
+                        <form action="" method="POST" class="was-validated">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome" aria-label="Nome" value="{{row.35}}" disabled>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nrcol" placeholder="Número Colaborador" value="{{row.36}}" aria-label="Número Colaborador" disabled>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="teamleader" placeholder="Número Colaborador" value="{{row.1}}" aria-label="Número Colaborador" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    
+                                </div>
+                            </div>
+                    </div>
+                    <br>
+                    </form>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>Download PDF</strong>
+                                    <a class="btn btn-primary btn-lg" href="/table_operador/{{row.0}}" role="button" style="background-color:#ff0000; border-color: white; color: white;"><i class="bi bi-file-earmark-pdf"></i></a></th>
+                                    <th scope="col">Comentário</th>
+                                    <th scope="col">Auto Avaliação</th>
+                                    <th scope="col">Avaliação </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Cultura e Segurança</th>
+                                    <td>{{row.25}}</td>
+                                    <td>{{row.3}}</td>
+                                    <td>{{row.4}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para a Qualidade</th>
+                                    <td>{{row.26}}</td>
+                                    <td>{{row.5}}</td>
+                                    <td>{{row.6}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Orientação para os Resultados</th>
+                                    <td>{{row.27}}</td>
+                                    <td>{{row.7}}</td>
+                                    <td>{{row.8}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Relacionamento Interpessoal</th>
+                                    <td>{{row.28}}</td>
+                                    <td>{{row.9}}</td>
+                                    <td>{{row.10}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Trabalho em Equipa</th>
+                                    <td>{{row.29}}</td>
+                                    <td>{{row.11}}</td>
+                                    <td>{{row.12}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Polivalencia</th>
+                                    <td>{{row.30}}</td>
+                                    <td>{{row.13}}</td>
+                                    <td>{{row.14}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Pontualidade</th>
+                                    <td>{{row.31}}</td>
+                                    <td>{{row.15}}</td>
+                                    <td>{{row.16}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Assiduidade</th>
+                                    <td>{{row.32}}</td>
+                                    <td>{{row.17}}</td>
+                                    <td>{{row.18}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Apreciação Global</th>
+                                    <td>{{row.33}}</td>
+                                    <td>{{row.19}}</td>
+                                    <td>{{row.20}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Disponibilidade para turno extra?</th>
+                                    <td></td>
+                                    <td>{{row.21}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Disponibilidade para trabalho suplementar?</th>
+                                    <td></td>
+                                    <td>{{row.22}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final</th>
+                                    <td></td>
+                                    <td>{{row.37}}</td>
+                                    <td>{{row.24}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Notas</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{row.34}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        </div>
+        {% endfor %}
+
+        {% for row in minha_avaliacao %}
+        <div id="avaliacao_pelo_teamleader{{row.0}}" class="modal lg fade" id="modal_1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Avaliar Colaborador</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align: center;">Questionário Operador</h3>
+                        <form action="/questionario_avaliacao_operador/{{row.0}}" method="POST" class="was-validated">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome" aria-label="Nome" value="{{row.35}}">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nrcol" placeholder="Número Colaborador" value="{{row.36}}" aria-label="Número Colaborador">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="teamleader" placeholder="Número Colaborador" value="{{row.1}}" aria-label="Número Colaborador">
+                                </div>
+                            </div>
+                            <br>
+                            <center>
+                                <h4>Cultura e Segurança<h4> <a href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-info-circle"></i></a></a>
+                            </center>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Cultura e Segurança</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <center style="color:#f8971d;">
+                                                <h4>Abaixo das Expectativas</h4>
+                                            </center>
+                                            <center><b>Falha ou resiste no cumprimento das normas de Segurança.</b>
+                                                Exemplos: Não preenche corretamente a startup checklist;<br>
+                                                Não utiliza os EPI's de forma correta;<br>
+                                                Não faz a pausa ativa
+                                                Resiste à Rotatividade</center><br>
+                                            <center style="color:#d1dc9c;">
+                                                <h4>De Acordo com as Expectativas</h4>
+                                            </center>
+                                            <center><b>Cumpre as normas de Segurança.</b><br>
+                                                Exemplos: Preenchimento da startup checklist; <br>
+                                                Utiliza os EPI's de forma correta; <br>
+                                                Faz a pausa ativa e adere à rotatividade.<br>
+                                                <br>
+                                                <center><b>Age quando identifica riscos para a sua segurança e dos outros.</b></center>
+                                                Exemplos: Dá sugestões de melhoria;<br>
+                                                Alerta os colegas para situações de risco. <br>
+                                                Cumpre os principios éticos de acordo com esta dimensão.
+                                            </center><br>
+                                            <center style="color:#90b114">
+                                                <h4>Excede as Expectativas</h4>
+                                            </center>
+                                            <center><b>Incentiva e promove comportamentos de segurança de forma proativa.</b><br>
+                                                <b>Cumpre e promove os principios éticos de acordo com esta dimensão.</b></center>
+                                            <br>
+                                            <center style="color:#002369">
+                                                <h4>Excecional face as Expectativas</h4>
+                                            </center>
+                                            <center><b>Incentiva e promove comportamentos de segurança de forma proativa.</b><br>
+                                                <b>Referência na equipa e exemplo a seguir em questões de segurança e ética.</b></center>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excede</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excecional</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check1[]" onclick="onlyOne1(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check1[]" onclick="onlyOne1(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excede" id="flexCheckDefault" name="check1[]" onclick="onlyOne1(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excecional" id="flexCheckDefault" name="check1[]" onclick="onlyOne1(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <center>
+                                <h4>Orientação para a Qualidade<h4><a href="#exampleModal1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-info-circle"></i></a>
+                            </center>
+                            
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Orientação para a Qualidade</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <center style="color:#f8971d;">
+                                                <h4>Abaixo das Expectativas</h4>
+                                            </center>
+                                            <center><b>Falha ou resiste no cumprimento das normas de Segurança.</b>
+                                                Exemplos: não cumpre instruções de trabalho, normas de qualidade, não coloca em prática o plano de reação de qualidade</center><br>
+                                            <center style="color:#d1dc9c;">
+                                                <h4>De Acordo com as Expectativas</h4>
+                                            </center>
+                                            <center><b>Cumpre os procedimentos de qualidade enquanto trabalha.</b><br>
+                                                Exemplos: instruções de trabalho, normas de qualidade, conhece e coloca em prática o plano de reação de qualidade.
+                                                <br>
+                                                <center><b>Identifica e promove os principios de qualidade do produto.</b></center>
+                                                Exemplos: não recebe defeitos,não produz defeitos e não envia defeitos.
+                                                <b>Cumpre os principios éticos de acordo com esta dimensão.</b>
+                                            </center><br>
+                                            <center style="color:#90b114">
+                                                <h4>Excede as Expectativas</h4>
+                                            </center>
+                                            <center><b>Identifica e sugere oportunidades de melhoria com impacto na qualidade de processo e/ou produto.</b><br>
+                                                <b>Cumpre e promove os principios éticos de acordo com esta dimensão.</b></center>
+                                            <br>
+                                            <center style="color:#002369">
+                                                <h4>Excecional face as Expectativas</h4>
+                                            </center>
+                                            <center><b>Incentiva e promove oportunidades de melhoria com impacto na qualidade de processo e/ou produto. </b><br>
+                                                <b>Referência na equipa e exemplo a seguir em questões de segurança e ética.</b></center>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excede</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excecional</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check3[]" onclick="onlyOne3(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check3[]" onclick="onlyOne3(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excede" id="flexCheckDefault" name="check3[]" onclick="onlyOne3(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excecional" id="flexCheckDefault" name="check3[]" onclick="onlyOne3(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <center>
+                                <h4>Orientação para os Resultados<h4><a href="#exampleModal2" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="bi bi-info-circle"></i></a>
+                            </center>
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Orientação para os Resultados</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <center style="color:#f8971d;">
+                                                <h4>Abaixo das Expectativas</h4>
+                                            </center>
+                                            <center><b>Falha ou resiste no cumprimento dos objectivos estipulados.</b>
+                                            </center><br>
+                                            <center style="color:#d1dc9c;">
+                                                <h4>De Acordo com as Expectativas</h4>
+                                            </center>
+                                            <center><b>Cumpre de forma consistente os objectivos estipulados, garantindo sempre segurança e qualidade.</b><br>
+                                                <b>Cumpre os principios éticos de acordo com esta dimensão.</b></center><br>
+                                            <center style="color:#90b114">
+                                                <h4>Excede as Expectativas</h4>
+                                            </center>
+                                            <center><b>Demonstra uma atitude positiva perante os desafios definidos para a função.</b><br>
+                                                <b>Cumpre e promove os principios éticos de acordo com esta dimensão.</b></center>
+                                            <br>
+                                            <center style="color:#002369">
+                                                <h4>Excecional face as Expectativas</h4>
+                                            </center>
+                                            <center><b>Supera-se e incentiva os outros a ir mais além.</b><br>
+                                                <b>Referência na equipa e exemplo a seguir em questão de cumprimento de objectivos de forma ética.</b></center>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excede</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excecional</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check5[]" onclick="onlyOne5(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check5[]" onclick="onlyOne5(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excede" id="flexCheckDefault" name="check5[]" onclick="onlyOne5(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excecional" id="flexCheckDefault" name="check5[]" onclick="onlyOne5(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <center>
+                                <h4>Relacionamento Interpessoal<h4><a href="#exampleModal3" data-bs-toggle="modal" data-bs-target="#exampleModal3"><i class="bi bi-info-circle"></i></a>
+                            </center>
+                            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Relacionamento Interpessoal</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <center style="color:#f8971d;">
+                                                <h4>Abaixo das Expectativas</h4>
+                                            </center>
+                                            <center><b>Revela dificuldades de relacionamento/comunicação com as pessoas com quem interage</b>
+                                                <b>Fomenta conflitos.</b>
+                                            </center><br>
+                                            <center style="color:#d1dc9c;">
+                                                <h4>De Acordo com as Expectativas</h4>
+                                            </center>
+                                            <center><b>Relaciona-se e comunica de forma aberta e confortável com as pessoas com quem interage(equipa,supervisor e outros departamentos).</b><br>
+                                                <b>Cumpre os principios éticos de acordo com esta dimensão.</b></center><br>
+                                            <center style="color:#90b114">
+                                                <h4>Excede as Expectativas</h4>
+                                            </center>
+                                            <center><b>Constrói relações profissionais construtivas e eficazes.</b><br>
+                                                <b>Comunicação frontal e serena.</b><br>
+                                                <b>Cumpre e promove os principios éticos de acordo com esta dimensão.</b></center>
+                                            <br>
+                                            <center style="color:#002369">
+                                                <h4>Excecional face as Expectativas</h4>
+                                            </center>
+                                            <center><b>Gere situações de tensão de forma confortável e exemplar.</b><br>
+                                                <b>Referência na equipa e exemplo a seguir quanto ao relacionamento interpessoal ético.</b></center>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excede</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excecional</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check7[]" onclick="onlyOne7(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check7[]" onclick="onlyOne7(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excede" id="flexCheckDefault" name="check7[]" onclick="onlyOne7(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excecional" id="flexCheckDefault" name="check7[]" onclick="onlyOne7(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <center>
+                                <h4>Trabalho em Equipa<h4><a href="#exampleModal4" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="bi bi-info-circle"></i></a>
+                            </center>
+                            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Trabalho em Equipa</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <center style="color:#f8971d;">
+                                                <h4>Abaixo das Expectativas</h4>
+                                            </center>
+                                            <center><b>Mostra-se pouco disponível para colaborar e trabalhar em equipa</b>
+                                            </center><br>
+                                            <center style="color:#d1dc9c;">
+                                                <h4>De Acordo com as Expectativas</h4>
+                                            </center>
+                                            <center><b>Trabalha de forma colaborativa com as pessoas com quem interage(equipa,chefias e outros departamentos).</b><br>
+                                                <b>Cumpre os principios éticos de acordo com esta dimensão.</b></center><br>
+                                            <center style="color:#90b114">
+                                                <h4>Excede as Expectativas</h4>
+                                            </center>
+                                            <center><b>Promove o trabalho em equipa de forma a atingir resultados.</b><br>
+                                                <b>Cumpre e promove o trabalho em equipa de acordo com princípios éticos.</b><br>
+                                                <b>Cumpre e promove os principios éticos de acordo com esta dimensão.</b></center>
+                                            <br>
+                                            <center style="color:#002369">
+                                                <h4>Excecional face as Expectativas</h4>
+                                            </center>
+                                            <center><b>Promove a criação de sinergias para o cumprimento dos objectivos de outras equipas ou departamentos.</b><br>
+                                                <b>Referência na equipa e exemplo a seguir quanto ao trabalho em equipa e à promoção dos princípios éticos.</b></center>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excede</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excecional</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check9[]" onclick="onlyOne9(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check9[]" onclick="onlyOne9(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excede" id="flexCheckDefault" name="check9[]" onclick="onlyOne9(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excecional" id="flexCheckDefault" name="check9[]" onclick="onlyOne9(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <center>
+                                <h4>Polivalencia<h4><a href="#exampleModal5" data-bs-toggle="modal" data-bs-target="#exampleModal5"><i class="bi bi-info-circle"></i></a>
+                            </center>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excede</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excecional</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check11[]" onclick="onlyOne11(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check11[]" onclick="onlyOne11(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excede" id="flexCheckDefault" name="check11[]" onclick="onlyOne11(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excecional" id="flexCheckDefault" name="check11[]" onclick="onlyOne11(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <center>
+                                <h4>Pontualidade<h4><a href="#exampleModal6" data-bs-toggle="modal" data-bs-target="#exampleModal6"><i class="bi bi-info-circle"></i></a>
+                            </center>
+                            <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Pontualidade</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <center style="color:#f8971d;">
+                                                <h4>Abaixo das Expectativas</h4>
+                                            </center>
+                                            <center><b>Falha sistematicamente no cumprimento de horários (chega regularmente tarde, sai regularmente mais cedo, demora mais tempo no intervalo definido).</b><br>
+                                            </center><br>
+                                            <center style="color:#d1dc9c;">
+                                                <h4>De Acordo com as Expectativas</h4>
+                                            </center>
+                                            <center><b>Cumpre o horário do seu posto de trabalho.</b><br>
+                                                <b>Cumpre o horário definido para intervalo.</b>
+                                            </center><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Auto Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check12[]" onclick="onlyOne12(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check12[]" onclick="onlyOne12(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <center>
+                                <h4>Assiduidade<h4><a href="#exampleModal7" data-bs-toggle="modal" data-bs-target="#exampleModal7"><i class="bi bi-info-circle"></i></a>
+                            </center>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Expectativas</th>
+                                        <th scope="col">
+                                            <center>Abaixo </center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check13[]" onclick="onlyOne13(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check13[]" onclick="onlyOne13(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            <center>
+                                <h4>Apreciação Global<h4><a href="#exampleModal8" data-bs-toggle="modal" data-bs-target="#exampleModal8"><i class="bi bi-info-circle"></i></a>
+                            </center>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Desempenho</th>
+                                        <th scope="col">
+                                            <center>Insatisfatório</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Abaixo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>De Acordo</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excede</center>
+                                        </th>
+                                        <th scope="col">
+                                            <center>Excecional</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            Avaliação
+                                        </th>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Insatisfatório" id="flexCheckDefault" name="check20[]" onclick="onlyOne20(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Abaixo" id="flexCheckDefault" name="check20[]" onclick="onlyOne20(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="De Acordo" id="flexCheckDefault" name="check20[]" onclick="onlyOne20(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excede" id="flexCheckDefault" name="check20[]" onclick="onlyOne20(this)" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check" align="center">
+                                                <input class="form-check-input" type="checkbox" value="Excecional" id="flexCheckDefault" name="check20[]" onclick="onlyOne20(this)" required="required" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <hr>
+                            <div class="form-row">
+                                <div class="col-5">
+                                    Demonstra disponibilidade para mais um turno?
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" name="check16[]" id="check16[]" onclick="onlyOne16(this)" value="Sim" required="required" />Sim
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" name="check16[]" onclick="onlyOne16(this)" value="Não" required="required" />Não
+                                </div>
+                                <div class="col">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-5">
+                                    Demonstra disponibilidade para trabalho suplementar?
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" name="check17[]" id="check17[]" onclick="onlyOne17(this)" value="Sim" required="required" />Sim
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" name="check17[]" onclick="onlyOne17(this)" value="Não" required="required" />Não
+                                </div>
+                                <div class="col">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-5">
+                                    Avaliação de Contrato - Passagem a BorgWarner
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" name="check18[]" onclick="onlyOne18(this)" value="Sim" required="required" />Sim
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" name="check18[]" onclick="onlyOne18(this)" value="Não" required="required" />Não
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" name="check18[]" onclick="onlyOne18(this)" value="Não Aplicável" required="required" />Não Aplicável
+                                </div>
+                            </div>
+                            <hr>
+                            <br>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="suptexto" maxlength="200" placeholder="Comentário do Superior Hierárquico" required></textarea>
+                            <br>
+                            <br>
+                            <center><input type="submit" name="range" id="range" value="Submeter" class="btn btn-success" /></center>
+                            <br>
+                        </form>
+                        <hr>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+   
+    </div>
+    <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel7" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Assiduidade</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <center style="color:#f8971d;">
+                                            <h4>Abaixo das Expectativas</h4>
+                                        </center>
+                                        <center><b>Não comunica, ou raramente comunica as ausências planeadas atempadamente.</b><br>
+                                            <b>Não comunica ausências de última hora.</b><br>
+                                            <b>Ausenta-se do posto de trabalho sem motivo justificavel.</b>
+                                        </center><br>
+                                        <center style="color:#d1dc9c;">
+                                            <h4>De Acordo com as Expectativas</h4>
+                                        </center>
+                                        <center><b>Planeia e comunica as suas ausências atempadamente.</b><br>
+                                            <b>Comunica ausências com tempo.</b>
+                                        </center><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+</body>
+{% endblock %}

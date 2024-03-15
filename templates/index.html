@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>GPS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/ico" href="static/content/icon_novo_azul.PNG">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="background-image: url(static/content/fundo.png);background-size: cover;">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <!-- Trigger the modal with a button -->
+                        <div class="card card-image" style="background:rgba(226, 226, 226, 0.20);">
+                            <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+                                <img src="static/content/BorgWarner_Logo_White.png" style="height: 20px ">
+                                <div class="py-5">
+                                    <!-- Content -->
+                                    <h5 class="h5 orange-text"><i class="fas fa-camera-retro"></i></h5>
+                                    <h4 class="card-title h2 my-4 py-2">Guiding People for Success</h4>
+                                    <div class="row2">
+                                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
+                                        
+                                    </div>
+                                    <br>
+                                </div>
+                                <a class="btn peach-gradient"><i class="fas fa-clone left"></i> Digital Transformation (Viana)</a>
+                            </div>
+                            <div>
+                                <!--  FLASH MENSAGENS!-->
+                                {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-info" role="alert">
+                                    <span>{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Login</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/login" method="POST">
+                                <div class="form-group">
+                                    <label class="control-label">Username</label>
+                                    <div>
+                                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Password</label>
+                                    <div>
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim Modal Login -->
+            <!-- Modal Register -->
+            <div class="modal fade" id="myModalreg" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Registo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/register" method="POST">
+                                <div class="form-group">
+                                    <label class="control-label">Username</label>
+                                    <div>
+                                        <input type="text" id="username" name="username" class="form-control" placeholder="Insira Username" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Numero de Colaborador</label>
+                                    <div>
+                                        <input type="tel" id="ncolaborador" name="ncolaborador" class="form-control" placeholder="Insira Numero de Colaborador" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Password</label>
+                                    <div>
+                                        <input type="password" id="password1" name="password1" class="form-control" placeholder="Enter Password" title="Password tem que ter 8 Caracteres" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Confirmar Password</label>
+                                    <div>
+                                        <input type="password" id="password2" name="password2" class="form-control" placeholder="Confirmar Password" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary ">Registo</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim Modal Login -->
+        </div>
+    </section>
+</body>
+
+</html>
