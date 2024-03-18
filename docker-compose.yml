@@ -13,3 +13,15 @@ services:
     environment:
       FLASK_APP: app.py
       FLASK_ENV: development
+
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts-jdk17
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+volumes:
+  jenkins_home:
