@@ -14,7 +14,6 @@ app.config["IMAGE_UPLOADS"] = "C:/Users/cafilipe/Desktop/FlaskApp/GPS/static/que
 app.secret_key = 'your secret key gpsteste'
 
 
-
 @app.route("/download")
 def download_file_questionario_op():
     path="questionario2.pdf"
