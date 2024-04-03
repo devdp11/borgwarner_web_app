@@ -7,8 +7,11 @@ from datetime import date
 from fpdf import FPDF
 import json
 import settings
+from flask import Flask, render_template, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:50156"])
 
 app.config["IMAGE_UPLOADS"] = "C:/Users/cafilipe/Desktop/FlaskApp/GPS/static/questionario2/"
 app.secret_key = 'your secret key gpsteste'
