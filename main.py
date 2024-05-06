@@ -2,11 +2,12 @@
 #Adicionar o logo logotipo nos pdfs
 #os campos das avaliações extraordinarias de operadores foram alterados para serem inseriodos nos campos corretos 
 
-from flask import Flask, render_template, request, redirect, url_for, session, g, Response, jsonify, make_response,send_file, send_from_directory
+from flask import Flask, flash, render_template, request, redirect, url_for, session, g, Response, jsonify, make_response, send_file, send_from_directory #erro1(flash)
 from datetime import date
 from fpdf import FPDF
 import json
 import settings
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
