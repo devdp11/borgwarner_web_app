@@ -7,13 +7,38 @@ from datetime import date
 from fpdf import FPDF
 import json
 import settings
-from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
 
 app = Flask(__name__)
 
-app.config["IMAGE_UPLOADS"] = "C:/Users/cafilipe/Desktop/FlaskApp/GPS/static/questionario2/"
+""" app.config["IMAGE_UPLOADS"] = "C:/Users/cafilipe/Desktop/FlaskApp/GPS/static/questionario2/" """
 app.secret_key = 'your secret key gpsteste'
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost/databaseborg'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    __tablename__ = 'users' 
+
+    uuid = db.Column(db.String(36), primary_key=True, unique=True, nullable=False)
+    username = db.Column(db.String(255), unique=True, nullable=False)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    acesslevel = db.Column(db.Integer, default=2) 
+
+def insert_initial_user():
+    existing_user = User.query.filter_by(username='root').first()
+    if existing_user:
+        print('User "root" já existente na base de dados.')
+    else:
+        new_uuid = str(uuid.uuid4())
+        hashed_password = generate_password_hash('root')
+        new_user = User(uuid=new_uuid, username='root', email='root@root.com', password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        print('User "root" adicionado com sucesso.')
 
 @app.route("/download")
 def download_file_questionario_op():
@@ -22,6 +47,7 @@ def download_file_questionario_op():
 
 @app.route('/')
 def index():
+    insert_initial_user()
     return render_template('index.html')
 
 @app.route('/questionario',methods=['GET', 'POST'])
@@ -786,36 +812,29 @@ def propria_avaliacao_tecnico():
 #------------------------------------------
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # Check if "username" and "password" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        # Create variables for easy access
+    if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        #con=conn2.cursor()
-        #con.execute('SELECT * FROM account WHERE username = ? AND password = ?', (username, password))
-        # Fetch one record and return result em array
-        #account = con.fetchone()
-        # If account exists in accounts table in out database
-        #if account:
-            # Create session data, we can access this data in other routes mas temos de selecioanr a linha de array
-            #session['loggedin'] = True
-            
-        session['username'] = username
-        session['password'] = password
-        session['worknumber'] = '000222'
-        session['acesslevel'] = 1
-        # Redirect to home page
-        if session['acesslevel'] == 2 :
-            return redirect(url_for('minhas_avaliacoes'))
-        elif session['acesslevel'] == 3: 
-            return redirect(url_for('minhas_avaliacoes_pl'))
-        elif session['acesslevel'] == 1:
-            return redirect(url_for('minhas_avaliacoes'))
-        else: 
-            return redirect(url_for('home')) 
-    else:
-        flash('Wrong Username / Password')
-        return redirect(url_for('index'))
+        user = User.query.filter_by(username=username).first()
+
+        if user and check_password_hash(user.password, password):
+            session['logged_in'] = True
+            session['username'] = user.username
+            session['acesslevel'] = user.acesslevel
+            if session['acesslevel'] == 2:
+                return redirect(url_for('minhas_avaliacoes'))
+            elif session['acesslevel'] == 3:
+                return redirect(url_for('minhas_avaliacoes_pl'))
+            elif session['acesslevel'] == 1:
+                return redirect(url_for('minhas_avaliacoes'))
+            else:
+                return redirect(url_for('home'))
+        else:
+            flash('Username ou senha incorretos.')
+            return redirect(url_for('index'))
+        
+    flash('Username autenticado.')
+    return render_template('index.html')
 
 
 
@@ -830,8 +849,10 @@ def home():
 
 @app.route('/logout')
 def logout():
-    session.clear()
-    return redirect(url_for('index')) 
+    session.pop('logged_in', None)
+    session.pop('username', None)
+    session.pop('acesslevel', None)
+    return redirect(url_for('index'))
     #return render_template("index.html")
 #------------------------------------------
 @app.route('/opquest',methods=['GET', 'POST'])
