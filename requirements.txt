@@ -1,3 +1,4 @@
 Flask
 Flask-SQLAlchemy
 fpdf
+psycopg2-binary
