@@ -16,7 +16,7 @@ app = Flask(__name__)
 """ app.config["IMAGE_UPLOADS"] = "C:/Users/cafilipe/Desktop/FlaskApp/GPS/static/questionario2/" """
 app.secret_key = 'your secret key gpsteste'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost/databaseborg'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://default:M6mEwP8YAhkn@ep-broad-dawn-a2ectonv-pooler.eu-central-1.aws.neon.tech:5432/verceldb?sslmode=require'
 db = SQLAlchemy(app)
 
 class User(db.Model):
