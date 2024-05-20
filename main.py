@@ -47,6 +47,7 @@ def download_file_questionario_op():
 
 @app.route('/')
 def index():
+    db.create_all()
     insert_initial_user()
     return render_template('index.html')
 
