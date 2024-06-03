@@ -5,50 +5,42 @@
 from flask import Flask, flash, render_template, request, redirect, url_for, session, g, Response, jsonify, make_response, send_file, send_from_directory #erro1(flash)
 from datetime import date
 from fpdf import FPDF
-import json
-import settings
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-import uuid
+from google.cloud.sql.connector import Connector
+import sqlalchemy
+import pymysql
+import os
+
+INSTANCE_CONNECTION_NAME = "my-project-60487-425122:europe-southwest1:borgwarner-test-app-database"
+DB_USER = "sqlserver"
+DB_PASS = "123"
+DB_NAME = "borgwarner"
 
 app = Flask(__name__)
 
-""" app.config["IMAGE_UPLOADS"] = "C:/Users/cafilipe/Desktop/FlaskApp/GPS/static/questionario2/" """
-app.secret_key = 'your secret key gpsteste'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credentials_google.json'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://default:M6mEwP8YAhkn@ep-broad-dawn-a2ectonv-pooler.eu-central-1.aws.neon.tech:5432/verceldb?sslmode=require'
-db = SQLAlchemy(app)
+connector = Connector()
 
-class User(db.Model):
-    __tablename__ = 'users' 
-
-    uuid = db.Column(db.String(36), primary_key=True, unique=True, nullable=False)
-    username = db.Column(db.String(255), unique=True, nullable=False)
-    email = db.Column(db.String(255), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)
-    acesslevel = db.Column(db.Integer, default=2) 
-
-def insert_initial_user():
-    existing_user = User.query.filter_by(username='root').first()
-    if existing_user:
-        print('User "root" já existente na base de dados.')
-    else:
-        new_uuid = str(uuid.uuid4())
-        hashed_password = generate_password_hash('root')
-        new_user = User(uuid=new_uuid, username='root', email='root@root.com', password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        print('User "root" adicionado com sucesso.')
+def get_connection() -> sqlalchemy.engine.base.Connection:
+    connection = connector.connect(
+        INSTANCE_CONNECTION_NAME,
+        "pymysql",
+        user=DB_USER,
+        password=DB_PASS,
+        db=DB_NAME
+    )
+    return connection
 
 @app.route("/download")
 def download_file_questionario_op():
-    path="questionario2.pdf"
-    return send_file(path, as_attachment = True)
+    path = "questionario2.pdf"
+    return send_file(path, as_attachment=True)
 
 @app.route('/')
 def index():
-    db.create_all()
-    insert_initial_user()
+    get_connection()
     return render_template('index.html')
 
 @app.route('/questionario',methods=['GET', 'POST'])
