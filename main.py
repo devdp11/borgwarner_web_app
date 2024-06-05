@@ -1,37 +1,68 @@
-#Inicio de APP
-#Adicionar o logo logotipo nos pdfs
-#os campos das avaliações extraordinarias de operadores foram alterados para serem inseriodos nos campos corretos 
-
+import uuid
 from flask import Flask, flash, render_template, request, redirect, url_for, session, g, Response, jsonify, make_response, send_file, send_from_directory #erro1(flash)
 from datetime import date
 from fpdf import FPDF
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from google.cloud.sql.connector import Connector
-import sqlalchemy
-import pymysql
-import os
-
-INSTANCE_CONNECTION_NAME = "my-project-60487-425122:europe-southwest1:borgwarner-test-app-database"
-DB_USER = "sqlserver"
-DB_PASS = "123"
-DB_NAME = "borgwarner"
 
 app = Flask(__name__)
+app.secret_key = 'your secret key gpsteste'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://default:M6mEwP8YAhkn@ep-broad-dawn-a2ectonv-pooler.eu-central-1.aws.neon.tech:5432/verceldb?sslmode=require'
+db = SQLAlchemy(app)
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credentials_google.json'
+class User(db.Model):
+    __tablename__ = 'users' 
 
-connector = Connector()
+    uuid = db.Column(db.String(36), primary_key=True, unique=True, nullable=False)
+    username = db.Column(db.String(255), unique=True, nullable=False)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    acesslevel = db.Column(db.Integer, default=2) 
 
-def get_connection() -> sqlalchemy.engine.base.Connection:
-    connection = connector.connect(
-        INSTANCE_CONNECTION_NAME,
-        "pymysql",
-        user=DB_USER,
-        password=DB_PASS,
-        db=DB_NAME
-    )
-    return connection
+def insert_initial_user():
+    existing_user = User.query.filter_by(username='root').first()
+    if existing_user:
+        print('User "root" já existente na base de dados.')
+    else:
+        new_uuid = str(uuid.uuid4())
+        hashed_password = generate_password_hash('root')
+        new_user = User(uuid=new_uuid, username='root', email='root@root.com', password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        print('User "root" adicionado com sucesso.')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password1 = request.form['password1']
+        password2 = request.form['password2']
+
+        # Verificar se as senhas coincidem
+        if password1 != password2:
+            flash('As senhas não coincidem.', 'error')
+            return redirect(request.url)
+
+        # Verificar se o usuário ou email já existem no banco de dados
+        if User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first():
+            flash('Nome de usuário ou email já está em uso.', 'error')
+            return redirect(request.url)
+
+        # Criptografar a senha antes de salvar no banco de dados
+        hashed_password = generate_password_hash(password1)
+
+        # Criar um novo usuário
+        new_uuid = str(uuid.uuid4())
+        new_user = User(uuid=new_uuid,username=username, email=email, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash('Registro bem-sucedido. Você pode fazer login agora.', 'success')
+        return redirect('/login')
+
+    return render_template('index.html')
 
 @app.route("/download")
 def download_file_questionario_op():
@@ -40,7 +71,8 @@ def download_file_questionario_op():
 
 @app.route('/')
 def index():
-    """ get_connection() """
+    db.create_all()
+    insert_initial_user()
     return render_template('index.html')
 
 @app.route('/questionario',methods=['GET', 'POST'])
@@ -828,18 +860,6 @@ def login():
         
     flash('Username autenticado.')
     return render_template('index.html')
-
-""" @app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password1']
-
-        return redirect(url_for('home'))
-        
-    flash('Username autenticado.')
-    return render_template('index.html') """
 
 #------------------------------------------
 @app.route('/home',methods=['GET', 'POST'])
