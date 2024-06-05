@@ -4,7 +4,6 @@ from datetime import date
 from fpdf import FPDF
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from google.cloud.sql.connector import Connector
 
 app = Flask(__name__)
 app.secret_key = 'your secret key gpsteste'
