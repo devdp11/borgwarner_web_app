@@ -40,7 +40,7 @@ def download_file_questionario_op():
 
 @app.route('/')
 def index():
-    get_connection()
+    """ get_connection() """
     return render_template('index.html')
 
 @app.route('/questionario',methods=['GET', 'POST'])
@@ -829,7 +829,17 @@ def login():
     flash('Username autenticado.')
     return render_template('index.html')
 
+""" @app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password1']
 
+        return redirect(url_for('home'))
+        
+    flash('Username autenticado.')
+    return render_template('index.html') """
 
 #------------------------------------------
 @app.route('/home',methods=['GET', 'POST'])
